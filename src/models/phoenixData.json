@@ -1,0 +1,16 @@
+[
+    {
+        "pet_id": "12345678",
+        "pet_type": "phoenix",
+        "last_health_check": "10/01/2025",
+        "vaccines_received": 3,
+        "fireproof_certificate": true
+    },
+    {
+        "pet_id": "87654321",
+        "pet_type": "phoenix",
+        "last_health_check": "05/12/2024",
+        "vaccines_received": 2,
+        "fireproof_certificate": true
+    }
+]

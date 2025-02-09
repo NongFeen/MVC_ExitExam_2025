@@ -1,0 +1,12 @@
+[
+    {
+        "pet_id": "23456789",
+        "pet_type": "dragon",
+        "rejected_reason": "no certificate"
+    },
+    {
+        "pet_id": "93426789",
+        "pet_type": "dragon",
+        "rejected_reason": "no certificate"
+    }
+]
