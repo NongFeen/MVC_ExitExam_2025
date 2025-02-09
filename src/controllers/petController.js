@@ -48,9 +48,10 @@ exports.addPet = (req, res) => {
         vaccines_received: vaccineCount,
     };
 
+    console.log(newPet);
     // Check type
     if (type === "phoenix") {
-        if (additionalInfo !== true) {
+        if (additionalInfo === false) {
             petModel.saveRejectedPet({
                 pet_type: "phoenix",
                 rejected_reason: "Phoenix must have a fireproof certificate certificate"
@@ -58,6 +59,7 @@ exports.addPet = (req, res) => {
             return res.status(400).json({ message: "Phoenix must have a fireproof certificate certificate" });
         }
         newPet.fireproof_certificate = true; // replace with fire_resistance_certificate
+        console.log(newPet);
     } else if (type === "dragon") {
         const pollutionLevel = parseFloat(additionalInfo);
         if (pollutionLevel > 70) {
@@ -83,7 +85,9 @@ exports.addPet = (req, res) => {
     // If no rejection, add the new pet
     const petAdded = petModel.addNewPet(type, newPet);
     if (!petAdded) {
-        return res.status(500).json({ message: "Error adding pet" });
+        return res.status(500).json({ message: "Error adding pet",
+            newPet
+        });
     }
 
     // Send response back

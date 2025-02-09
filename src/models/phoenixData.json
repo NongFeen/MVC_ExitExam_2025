@@ -26,5 +26,19 @@
     "vaccines_received": 3,
     "fireproof_certificate": true,
     "pet_id": 42661032
+  },
+  {
+    "pet_type": "phoenix",
+    "last_health_check": "15/11/2024",
+    "vaccines_received": 3,
+    "fireproof_certificate": true,
+    "pet_id": 71192581
+  },
+  {
+    "pet_type": "phoenix",
+    "last_health_check": "2025-02-11",
+    "vaccines_received": 123,
+    "fireproof_certificate": true,
+    "pet_id": 72185005
   }
 ]

@@ -103,5 +103,119 @@
     "vaccines_received": 123,
     "fireproof_certificate": true,
     "pet_id": 74287150
+  },
+  {
+    "pet_type": "phoenix",
+    "last_health_check": "15/11/2024",
+    "vaccines_received": 3,
+    "fireproof_certificate": true,
+    "pet_id": 98500630
+  },
+  {
+    "pet_type": "phoenix",
+    "last_health_check": "15/11/2024",
+    "vaccines_received": 3,
+    "fireproof_certificate": true,
+    "pet_id": 71075669
+  },
+  {
+    "pet_type": "phoenix",
+    "last_health_check": "15/11/2024",
+    "vaccines_received": 3,
+    "fireproof_certificate": true,
+    "pet_id": 66776430
+  },
+  {
+    "pet_type": "phoenix",
+    "last_health_check": "15/11/2024",
+    "vaccines_received": 3,
+    "pet_id": 72464413
+  },
+  {
+    "pet_type": "phoenix",
+    "last_health_check": "15/11/2024",
+    "vaccines_received": 3,
+    "pet_id": 17932761
+  },
+  {
+    "pet_type": "phoenix",
+    "last_health_check": "15/11/2024",
+    "vaccines_received": 3,
+    "pet_id": 29858804
+  },
+  {
+    "pet_type": "phoenix",
+    "last_health_check": "15/11/2024",
+    "vaccines_received": 3,
+    "fireproof_certificate": true,
+    "pet_id": 22443639
+  },
+  {
+    "pet_type": "phoenix",
+    "last_health_check": "15/11/2024",
+    "vaccines_received": 3,
+    "fireproof_certificate": true,
+    "pet_id": 91048458
+  },
+  {
+    "pet_type": "phoenix",
+    "last_health_check": "15/11/2024",
+    "vaccines_received": 3,
+    "fireproof_certificate": true,
+    "pet_id": 90877415
+  },
+  {
+    "pet_type": "phoenix",
+    "last_health_check": "15/11/2024",
+    "vaccines_received": 3,
+    "fireproof_certificate": true,
+    "pet_id": 78042343
+  },
+  {
+    "pet_type": "phoenix",
+    "last_health_check": "15/11/2024",
+    "vaccines_received": 3,
+    "fireproof_certificate": true,
+    "pet_id": 32866383
+  },
+  {
+    "pet_type": "phoenix",
+    "last_health_check": "15/11/2024",
+    "vaccines_received": 3,
+    "fireproof_certificate": true,
+    "pet_id": 57933486
+  },
+  {
+    "pet_type": "phoenix",
+    "last_health_check": "15/11/2024",
+    "vaccines_received": 3,
+    "fireproof_certificate": true,
+    "pet_id": 75161695
+  },
+  {
+    "pet_type": "phoenix",
+    "rejected_reason": "Phoenix must have a fireproof certificate certificate",
+    "pet_id": 20252570
+  },
+  {
+    "pet_type": "phoenix",
+    "last_health_check": "15/11/2024",
+    "vaccines_received": 3,
+    "fireproof_certificate": true,
+    "pet_id": 17796239
+  },
+  {
+    "pet_type": "phoenix",
+    "last_health_check": "15/11/2024",
+    "vaccines_received": 3,
+    "fireproof_certificate": true,
+    "pet_id": 68323704
+  },
+  {
+    "pet_type": "phoenix",
+    "last_health_check": "15/11/2024",
+    "vaccines_received": 3,
+    "fireproof_certificate": true,
+    "pet_id": 99005905
   }
 ]

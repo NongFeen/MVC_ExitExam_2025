@@ -80,7 +80,8 @@ exports.addNewPet = (type, newPet) => {
 
     //#region find rejected pet type to save
     if (type === "phoenix") {
-        if (!newPet.fireproofCertificate) {
+        console.log(newPet);
+        if (!newPet.fireproof_certificate) {
             saveRejectedPet(newPet); // Save to rejected data
             return false;
         }
