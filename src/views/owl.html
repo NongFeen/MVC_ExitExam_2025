@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>owl School</title>
+    <title>Owl School</title>
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
@@ -13,14 +13,14 @@
                 <li><a href="home" >Home</a></li>
                 <li><a href="dragon">Dragon School</a></li>
                 <li><a href="phoenix">Phoenix School</a></li>
-                <li><a href="owl" class="active">Owl School</a></li>
+                <li><a href="owl "class="active">Owl School</a></li>
             </ul>
         </div>
     </nav>
 
     <main>
         <section class="title">
-            <h1>owl School</h1>
+            <h1>Owl School</h1>
             <p>Learn all about owl care and maintenance.</p>
         </section>
 
@@ -30,15 +30,34 @@
             <p>Rejected Pets: <span id="rejected-count">0</span></p>
         </section>
 
+        <!-- Form to Add New Pet -->
+        <section class="add-pet-form">
+            <h2>Add a New Pet</h2>
+            <form id="add-pet-form">
+                
+                <label for="healthDate">Health Date:</label>
+                <input type="date" id="healthDate" required>
+
+                <label for="vaccineCount">Vaccine Count:</label>
+                <input type="number" id="vaccineCount" required>
+
+                <label for="additionalInfo">Flight distance without food:</label>
+                <input type="number" id="additionalInfo" required>
+
+                <button type="submit">Add Pet</button>
+            </form>
+            <p id="status-message"></p>
+        </section>
+
         <section class="pet-table">
-            <h2>Accepted owl Pets</h2>
+            <h2>Accepted Owl Pets</h2>
             <table class="table">
                 <thead>
                     <tr>
                         <th>Pet ID</th>
                         <th>Last Health Check</th>
                         <th>Vaccines Received</th>
-                        <th>Pollution Level</th>
+                        <th>Flight Distance Without Food </th>
                     </tr>
                 </thead>
                 <tbody id="accepted-owl-list">
@@ -48,7 +67,7 @@
         </section>
 
         <section class="pet-table">
-            <h2>Rejected owl Pets</h2>
+            <h2>Rejected Owl Pets</h2>
             <table class="table">
                 <thead>
                     <tr>
@@ -76,7 +95,7 @@
             fetch('/pets/findpet/owl')
                 .then(response => response.json())
                 .then(data => {
-                    const acceptedowlList = document.getElementById('accepted-owl-list');
+                    const acceptedOwlList = document.getElementById('accepted-owl-list');
                     const acceptedCount = document.getElementById('accepted-count');
                     let accepted = 0;
 
@@ -88,7 +107,7 @@
                             <td>${pet.vaccines_received}</td>
                             <td>${pet.flight_distance_without_food} km</td>
                         `;
-                        acceptedowlList.appendChild(row);
+                        acceptedOwlList.appendChild(row);
                         accepted++;
                     });
 
@@ -103,7 +122,7 @@
             fetch('/pets/rejected/owl')
                 .then(response => response.json())
                 .then(data => {
-                    const rejectedowlList = document.getElementById('rejected-owl-list');
+                    const rejectedOwlList = document.getElementById('rejected-owl-list');
                     const rejectedCount = document.getElementById('rejected-count');
                     let rejected = 0;
 
@@ -113,7 +132,7 @@
                             <td>${pet.pet_id}</td>
                             <td>${pet.rejected_reason}</td>
                         `;
-                        rejectedowlList.appendChild(row);
+                        rejectedOwlList.appendChild(row);
                         rejected++;
                     });
 
@@ -123,6 +142,56 @@
                 .catch(error => {
                     console.error('Error fetching rejected owl data:', error);
                 });
+
+            // Handle the form submission for adding a new pet
+            document.getElementById('add-pet-form').addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                // Get the form data, set pet type to 'owl'
+                const petData = {
+                    type: 'owl',  // Hardcoded pet type as 'owl'
+                    healthDate: document.getElementById('healthDate').value,
+                    vaccineCount: parseInt(document.getElementById('vaccineCount').value),
+                    additionalInfo: parseInt(document.getElementById('additionalInfo').value)
+                };
+
+                // Send the data to the API
+                fetch('/pets/addpet', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(petData)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.message === "Pet added successfully") {
+                        document.getElementById('status-message').textContent = 'Pet added successfully!';
+                        document.getElementById('add-pet-form').reset(); // Reset form fields
+
+                        // Optionally, add the new pet to the table
+                        const acceptedOwlList = document.getElementById('accepted-owl-list');
+                        const newRow = document.createElement('tr');
+                        newRow.innerHTML = `
+                            <td>${data.pet.pet_id}</td>
+                            <td>${data.pet.last_health_check}</td>
+                            <td>${data.pet.vaccines_received}</td>
+                            <td>${data.pet.flight_distance_without_food} km</td>
+                        `;
+                        acceptedOwlList.appendChild(newRow);
+
+                        // Optionally update the accepted pet count
+                        const acceptedCount = document.getElementById('accepted-count');
+                        acceptedCount.textContent = parseInt(acceptedCount.textContent) + 1;
+                    } else {
+                        document.getElementById('status-message').textContent = 'REJECTED';
+                    }
+                })
+                .catch(error => {
+                    document.getElementById('status-message').textContent = 'Error adding pet.';
+                    console.error('Error adding pet:', error);
+                });
+            });
         });
     </script>
 </body>

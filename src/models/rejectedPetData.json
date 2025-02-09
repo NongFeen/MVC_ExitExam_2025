@@ -13,5 +13,88 @@
     "pet_type": "dragon",
     "rejected_reason": "Dragon's pollution level must be less than 70%. Given pollution level: 99",
     "pet_id": 89794820
+  },
+  {
+    "pet_type": "owl",
+    "rejected_reason": "Owl's flight distance must be at least 100 km. Given distance: 32",
+    "pet_id": 73613391
+  },
+  {
+    "pet_type": "owl",
+    "rejected_reason": "Owl's flight distance must be at least 100 km. Given distance: 11",
+    "pet_id": 87106811
+  },
+  {
+    "pet_type": "phoenix",
+    "rejected_reason": "Phoenix must have a fireproof certificate certificate",
+    "pet_id": 39803278
+  },
+  {
+    "pet_type": "phoenix",
+    "last_health_check": "2025-02-07",
+    "vaccines_received": 1234,
+    "fireproof_certificate": true,
+    "pet_id": 69705919
+  },
+  {
+    "pet_type": "phoenix",
+    "last_health_check": "2025-02-05",
+    "vaccines_received": 12,
+    "fireproof_certificate": true,
+    "pet_id": 82379755
+  },
+  {
+    "pet_type": "phoenix",
+    "rejected_reason": "Phoenix must have a fireproof certificate certificate",
+    "pet_id": 40884225
+  },
+  {
+    "pet_type": "phoenix",
+    "rejected_reason": "Phoenix must have a fireproof certificate certificate",
+    "pet_id": 72578095
+  },
+  {
+    "pet_type": "phoenix",
+    "rejected_reason": "Phoenix must have a fireproof certificate certificate",
+    "pet_id": 49718426
+  },
+  {
+    "pet_type": "phoenix",
+    "rejected_reason": "Phoenix must have a fireproof certificate certificate",
+    "pet_id": 77512476
+  },
+  {
+    "pet_type": "phoenix",
+    "rejected_reason": "Phoenix must have a fireproof certificate certificate",
+    "pet_id": 80930917
+  },
+  {
+    "pet_type": "phoenix",
+    "last_health_check": "15/11/2024",
+    "vaccines_received": 3,
+    "fireproof_certificate": true,
+    "pet_id": 58086856
+  },
+  {
+    "pet_type": "phoenix",
+    "rejected_reason": "Phoenix must have a fireproof certificate certificate",
+    "pet_id": 13694722
+  },
+  {
+    "pet_type": "phoenix",
+    "last_health_check": "15/11/2024",
+    "vaccines_received": 3,
+    "fireproof_certificate": true,
+    "pet_id": 96410693
+  },
+  {
+    "pet_type": "phoenix",
+    "rejected_reason": "Phoenix must have a fireproof certificate certificate",
+    "pet_id": 84350010
+  },
+  {
+    "pet_type": "phoenix",
+    "rejected_reason": "Phoenix must have a fireproof certificate certificate",
+    "pet_id": 55896267
   }
 ]

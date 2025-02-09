@@ -30,6 +30,25 @@
             <p>Rejected Pets: <span id="rejected-count">0</span></p>
         </section>
 
+        <!-- Form to Add New Pet -->
+        <section class="add-pet-form">
+            <h2>Add a New Pet</h2>
+            <form id="add-pet-form">
+                
+                <label for="healthDate">Health Date:</label>
+                <input type="date" id="healthDate" required>
+
+                <label for="vaccineCount">Vaccine Count:</label>
+                <input type="number" id="vaccineCount" required>
+
+                <label for="additionalInfo">Additional Info (Pollution Level):</label>
+                <input type="number" id="additionalInfo" required>
+
+                <button type="submit">Add Pet</button>
+            </form>
+            <p id="status-message"></p>
+        </section>
+
         <section class="pet-table">
             <h2>Accepted Dragon Pets</h2>
             <table class="table">
@@ -123,6 +142,56 @@
                 .catch(error => {
                     console.error('Error fetching rejected dragon data:', error);
                 });
+
+            // Handle the form submission for adding a new pet
+            document.getElementById('add-pet-form').addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                // Get the form data, set pet type to 'dragon'
+                const petData = {
+                    type: 'dragon',  // Hardcoded pet type as 'dragon'
+                    healthDate: document.getElementById('healthDate').value,
+                    vaccineCount: parseInt(document.getElementById('vaccineCount').value),
+                    additionalInfo: parseInt(document.getElementById('additionalInfo').value)
+                };
+
+                // Send the data to the API
+                fetch('/pets/addpet', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(petData)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.message === "Pet added successfully") {
+                        document.getElementById('status-message').textContent = 'Pet added successfully!';
+                        document.getElementById('add-pet-form').reset(); // Reset form fields
+
+                        // Optionally, add the new pet to the table
+                        const acceptedDragonList = document.getElementById('accepted-dragon-list');
+                        const newRow = document.createElement('tr');
+                        newRow.innerHTML = `
+                            <td>${data.pet.pet_id}</td>
+                            <td>${data.pet.last_health_check}</td>
+                            <td>${data.pet.vaccines_received}</td>
+                            <td>${data.pet.smoke_pollution_level}%</td>
+                        `;
+                        acceptedDragonList.appendChild(newRow);
+
+                        // Optionally update the accepted pet count
+                        const acceptedCount = document.getElementById('accepted-count');
+                        acceptedCount.textContent = parseInt(acceptedCount.textContent) + 1;
+                    } else {
+                        document.getElementById('status-message').textContent = 'Failed to add pet.';
+                    }
+                })
+                .catch(error => {
+                    document.getElementById('status-message').textContent = 'Error adding pet.';
+                    console.error('Error adding pet:', error);
+                });
+            });
         });
     </script>
 </body>
