@@ -96,5 +96,12 @@
     "pet_type": "phoenix",
     "rejected_reason": "Phoenix must have a fireproof certificate certificate",
     "pet_id": 55896267
+  },
+  {
+    "pet_type": "phoenix",
+    "last_health_check": "2025-02-14",
+    "vaccines_received": 123,
+    "fireproof_certificate": true,
+    "pet_id": 74287150
   }
 ]

@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-const userRoutes = require('./routes/userRoutes');
+
 const petRoutes = require("./routes/petRoutes");
 const app = express();
 
@@ -8,7 +8,7 @@ app.use('/css', express.static(path.join(__dirname, 'views/css')));//css
 
 app.use(express.json());
 //route
-app.use('/users', userRoutes);
+
 app.use("/pets", petRoutes);
 
 app.get('/home', (req, res) => {//main page

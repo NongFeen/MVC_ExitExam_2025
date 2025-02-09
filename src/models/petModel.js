@@ -66,9 +66,9 @@ const generatePetId = () => {
     let pets;
 
     do {
-        petId = Math.floor(10000000 + Math.random() * 90000000);  // Ensures 8-digit number without leading zeros
-        pets = Object.values(exports.getAllPets()).flat(); // Use exports.getAllPets() instead
-    } while (pets.some(pet => pet.pet_id === petId)); // If the ID exists, regenerate
+        petId = Math.floor(10000000 + Math.random() * 90000000); 
+        pets = Object.values(exports.getAllPets()).flat(); 
+    } while (pets.some(pet => pet.pet_id === petId)); //dupe id 
 
     return petId;
 };
@@ -87,13 +87,13 @@ exports.addNewPet = (type, newPet) => {
     }
     if (type === "dragon") {
         if (newPet.smokePollutionLevel > 70) {
-            saveRejectedPet(newPet); // Save to rejected data
+            saveRejectedPet(newPet);
             return false;
         }
     }
     if (type === "owl") {
         if (newPet.flyingDistance < 100) {
-            saveRejectedPet(newPet); // Save to rejected data
+            saveRejectedPet(newPet);
             return false;
         }
     }
@@ -105,7 +105,6 @@ exports.addNewPet = (type, newPet) => {
 
     // Add the new pet to the pets array
     pets.push(newPet);
-
     const filePath = getFilePathByPetType(type); 
     if (filePath) {
         fs.writeFileSync(filePath, JSON.stringify(pets, null, 2), 'utf8');

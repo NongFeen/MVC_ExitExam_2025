@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>phoenix School</title>
+    <title>Phoenix School</title>
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
     <nav>
         <div>
             <ul>
-                <li><a href="home" >Home</a></li>
+                <li><a href="home">Home</a></li>
                 <li><a href="dragon">Dragon School</a></li>
                 <li><a href="phoenix" class="active">Phoenix School</a></li>
                 <li><a href="owl">Owl School</a></li>
@@ -20,7 +20,7 @@
 
     <main>
         <section class="title">
-            <h1>phoenix School</h1>
+            <h1>Phoenix School</h1>
             <p>Learn all about phoenix care and maintenance.</p>
         </section>
 
@@ -30,15 +30,35 @@
             <p>Rejected Pets: <span id="rejected-count">0</span></p>
         </section>
 
+        <!-- Add Pet Form -->
+        <section class="add-pet-form">
+            <h2>Add a New Pet</h2>
+            <form id="add-pet-form">
+                
+                <label for="healthDate">Health Date:</label>
+                <input type="date" id="healthDate" required>
+
+                <label for="vaccineCount">Vaccine Count:</label>
+                <input type="number" id="vaccineCount" required>
+
+                <label for="additionalInfo">Fireproof Certificate:</label>
+                <input type="checkbox" id="additionalInfo" required> (Check if true)
+
+                <button type="submit">Add Pet</button>
+            </form>
+            <p id="status-message"></p>
+        </section>
+
+        <!-- Accepted Phoenix Pets Table -->
         <section class="pet-table">
-            <h2>Accepted phoenix Pets</h2>
+            <h2>Accepted Phoenix Pets</h2>
             <table class="table">
                 <thead>
                     <tr>
                         <th>Pet ID</th>
                         <th>Last Health Check</th>
                         <th>Vaccines Received</th>
-                        <th>Certificated</th>
+                        <th>Fireproof Certificate</th>
                     </tr>
                 </thead>
                 <tbody id="accepted-phoenix-list">
@@ -47,8 +67,9 @@
             </table>
         </section>
 
+        <!-- Rejected Phoenix Pets Table -->
         <section class="pet-table">
-            <h2>Rejected phoenix Pets</h2>
+            <h2>Rejected Phoenix Pets</h2>
             <table class="table">
                 <thead>
                     <tr>
@@ -123,6 +144,41 @@
                 .catch(error => {
                     console.error('Error fetching rejected phoenix data:', error);
                 });
+
+            // Handle the form submission for adding a new pet
+            document.getElementById('add-pet-form').addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                // Get the form data
+                const petData = {
+                    type: "phoenix", // Hardcoded since it's for Phoenix only
+                    healthDate: document.getElementById('healthDate').value,
+                    vaccineCount: parseInt(document.getElementById('vaccineCount').value),
+                    additionalInfo: document.getElementById('additionalInfo').checked // Use checkbox value
+                };
+
+                // Send the data to the API
+                fetch('/pets/addpet', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(petData)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.message === "Pet added successfully") {
+                        document.getElementById('status-message').textContent = 'Pet added successfully!';
+                        document.getElementById('add-pet-form').reset(); // Reset form fields
+                    } else {
+                        document.getElementById('status-message').textContent = 'Failed to add pet.';
+                    }
+                })
+                .catch(error => {
+                    document.getElementById('status-message').textContent = 'Error adding pet.';
+                    console.error('Error adding pet:', error);
+                });
+            });
         });
     </script>
 </body>
