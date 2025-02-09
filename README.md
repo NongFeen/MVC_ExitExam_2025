@@ -2,6 +2,7 @@
 
 Run program using<br />
 ```
+npm install
 npm run dev
 ```
 แล้วเข้าไปที่ 
