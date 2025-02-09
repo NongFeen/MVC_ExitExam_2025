@@ -1,12 +1,17 @@
 [
-    {
-        "pet_id": "23456789",
-        "pet_type": "dragon",
-        "rejected_reason": "no certificate"
-    },
-    {
-        "pet_id": "93426789",
-        "pet_type": "dragon",
-        "rejected_reason": "no certificate"
-    }
+  {
+    "pet_type": "owl",
+    "rejected_reason": "Owl's flight distance must be at least 100 km. Given distance: 90",
+    "pet_id": 59255068
+  },
+  {
+    "pet_type": "phoenix",
+    "rejected_reason": "Phoenix must have a fire resistance certificate",
+    "pet_id": 83613925
+  },
+  {
+    "pet_type": "dragon",
+    "rejected_reason": "Dragon's pollution level must be less than 70%. Given pollution level: 99",
+    "pet_id": 89794820
+  }
 ]

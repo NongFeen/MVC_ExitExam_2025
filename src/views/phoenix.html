@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phoenix School</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <nav>
+        <div>
+            <ul>
+                <li><a href="home">Home</a></li>
+                <li><a href="dragon">Dragon School</a></li>
+                <li><a href="phoenix" class="active">Phoenix School</a></li>
+                <li><a href="owl">Owl School</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <section class="title">
+            <h1>Phoenix School</h1>
+            <p>Welcome to Phoenix School, where we teach our Phoenixes how to stay fire-resistant.</p>
+        </section>
+
+        <section>
+            <h2>Summary of Phoenixes</h2>
+            <p>Total Phoenixes Accepted: <span id="accepted-count">0</span></p>
+            <p>Total Phoenixes Rejected: <span id="rejected-count">0</span></p>
+            <!-- Add functionality to show actual count -->
+        </section>
+
+        <div class="grid">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Pet ID</th>
+                        <th>Rejection Reason (if any)</th>
+                    </tr>
+                </thead>
+                <tbody id="phoenix-list">
+                    <!-- Add dynamically generated rows here -->
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <a href="#" class="scroll-top">↑</a>
+    <footer>
+        <p>© 2025 Feen. All rights reserved.</p>
+    </footer>
+</body>
+</html>
