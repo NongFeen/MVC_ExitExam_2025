@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Owl School</title>
+    <title>owl School</title>
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
     <nav>
         <div>
             <ul>
-                <li><a href="home">Home</a></li>
+                <li><a href="home" >Home</a></li>
                 <li><a href="dragon">Dragon School</a></li>
                 <li><a href="phoenix">Phoenix School</a></li>
                 <li><a href="owl" class="active">Owl School</a></li>
@@ -20,35 +20,110 @@
 
     <main>
         <section class="title">
-            <h1>Owl School</h1>
-            <p>Welcome to Owl School. We help owls with their flight distance and prepare them for long journeys.</p>
+            <h1>owl School</h1>
+            <p>Learn all about owl care and maintenance.</p>
         </section>
 
-        <section>
-            <h2>Summary of Owls</h2>
-            <p>Total Owls Accepted: <span id="accepted-count">0</span></p>
-            <p>Total Owls Rejected: <span id="rejected-count">0</span></p>
-            <!-- Add functionality to show actual count -->
+        <section class="summary">
+            <h2>Pet Data Summary</h2>
+            <p>Accepted Pets: <span id="accepted-count">0</span></p>
+            <p>Rejected Pets: <span id="rejected-count">0</span></p>
         </section>
 
-        <div class="grid">
+        <section class="pet-table">
+            <h2>Accepted owl Pets</h2>
             <table class="table">
                 <thead>
                     <tr>
                         <th>Pet ID</th>
-                        <th>Rejection Reason (if any)</th>
+                        <th>Last Health Check</th>
+                        <th>Vaccines Received</th>
+                        <th>Pollution Level</th>
                     </tr>
                 </thead>
-                <tbody id="owl-list">
-                    <!-- Add dynamically generated rows here -->
+                <tbody id="accepted-owl-list">
+                    <!-- Accepted owl data will be populated here -->
                 </tbody>
             </table>
-        </div>
+        </section>
+
+        <section class="pet-table">
+            <h2>Rejected owl Pets</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Pet ID</th>
+                        <th>Rejected Reason</th>
+                    </tr>
+                </thead>
+                <tbody id="rejected-owl-list">
+                    <!-- Rejected owl data will be populated here -->
+                </tbody>
+            </table>
+        </section>
+
     </main>
 
     <a href="#" class="scroll-top">↑</a>
+
     <footer>
         <p>© 2025 Feen. All rights reserved.</p>
     </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Fetch accepted owl pets data
+            fetch('/pets/findpet/owl')
+                .then(response => response.json())
+                .then(data => {
+                    const acceptedowlList = document.getElementById('accepted-owl-list');
+                    const acceptedCount = document.getElementById('accepted-count');
+                    let accepted = 0;
+
+                    data.forEach(pet => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${pet.pet_id}</td>
+                            <td>${pet.last_health_check}</td>
+                            <td>${pet.vaccines_received}</td>
+                            <td>${pet.flight_distance_without_food} km</td>
+                        `;
+                        acceptedowlList.appendChild(row);
+                        accepted++;
+                    });
+
+                    // Update the accepted pets count
+                    acceptedCount.textContent = accepted;
+                })
+                .catch(error => {
+                    console.error('Error fetching accepted owl data:', error);
+                });
+
+            // Fetch rejected owl pets data
+            fetch('/pets/rejected/owl')
+                .then(response => response.json())
+                .then(data => {
+                    const rejectedowlList = document.getElementById('rejected-owl-list');
+                    const rejectedCount = document.getElementById('rejected-count');
+                    let rejected = 0;
+
+                    data.forEach(pet => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${pet.pet_id}</td>
+                            <td>${pet.rejected_reason}</td>
+                        `;
+                        rejectedowlList.appendChild(row);
+                        rejected++;
+                    });
+
+                    // Update the rejected pets count
+                    rejectedCount.textContent = rejected;
+                })
+                .catch(error => {
+                    console.error('Error fetching rejected owl data:', error);
+                });
+        });
+    </script>
 </body>
 </html>

@@ -53,9 +53,9 @@ exports.addPet = (req, res) => {
         if (additionalInfo !== true) {
             petModel.saveRejectedPet({
                 pet_type: "phoenix",
-                rejected_reason: "Phoenix must have a fire resistance certificate"
+                rejected_reason: "Phoenix must have a fireproof certificate certificate"
             });
-            return res.status(400).json({ message: "Phoenix must have a fire resistance certificate" });
+            return res.status(400).json({ message: "Phoenix must have a fireproof certificate certificate" });
         }
         newPet.fireproof_certificate = true; // replace with fire_resistance_certificate
     } else if (type === "dragon") {

@@ -10,8 +10,8 @@
     <nav>
         <div>
             <ul>
-                <li><a href="home" class="active">Home</a></li>
-                <li><a href="dragon">Dragon School</a></li>
+                <li><a href="home" >Home</a></li>
+                <li><a href="dragon" class="active">Dragon School</a></li>
                 <li><a href="phoenix">Phoenix School</a></li>
                 <li><a href="owl">Owl School</a></li>
             </ul>
@@ -31,7 +31,24 @@
         </section>
 
         <section class="pet-table">
-            <h2>Dragon Pets</h2>
+            <h2>Accepted Dragon Pets</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Pet ID</th>
+                        <th>Last Health Check</th>
+                        <th>Vaccines Received</th>
+                        <th>Pollution Level</th>
+                    </tr>
+                </thead>
+                <tbody id="accepted-dragon-list">
+                    <!-- Accepted dragon data will be populated here -->
+                </tbody>
+            </table>
+        </section>
+
+        <section class="pet-table">
+            <h2>Rejected Dragon Pets</h2>
             <table class="table">
                 <thead>
                     <tr>
@@ -39,8 +56,8 @@
                         <th>Rejected Reason</th>
                     </tr>
                 </thead>
-                <tbody id="dragon-list">
-                    <!-- Data will be populated here -->
+                <tbody id="rejected-dragon-list">
+                    <!-- Rejected dragon data will be populated here -->
                 </tbody>
             </table>
         </section>
@@ -55,42 +72,56 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            // Fetch dragon pets data from the API
-            fetch('/pets/dragon')
+            // Fetch accepted dragon pets data
+            fetch('/pets/findpet/dragon')
                 .then(response => response.json())
                 .then(data => {
-                    console.log(data);  // Log data for debugging
-
-                    const dragonList = document.getElementById('dragon-list');
+                    const acceptedDragonList = document.getElementById('accepted-dragon-list');
                     const acceptedCount = document.getElementById('accepted-count');
-                    const rejectedCount = document.getElementById('rejected-count');
-
                     let accepted = 0;
-                    let rejected = 0;
 
-                    // Loop through the data and create table rows
                     data.forEach(pet => {
                         const row = document.createElement('tr');
                         row.innerHTML = `
                             <td>${pet.pet_id}</td>
-                            <td>${pet.rejected_reason || 'N/A'}</td>
+                            <td>${pet.last_health_check}</td>
+                            <td>${pet.vaccines_received}</td>
+                            <td>${pet.smoke_pollution_level}%</td>
                         `;
-                        dragonList.appendChild(row);
-
-                        // Count accepted and rejected pets
-                        if (pet.rejected_reason) {
-                            rejected++;
-                        } else {
-                            accepted++;
-                        }
+                        acceptedDragonList.appendChild(row);
+                        accepted++;
                     });
 
-                    // Update the counts on the page
+                    // Update the accepted pets count
                     acceptedCount.textContent = accepted;
+                })
+                .catch(error => {
+                    console.error('Error fetching accepted dragon data:', error);
+                });
+
+            // Fetch rejected dragon pets data
+            fetch('/pets/rejected/dragon')
+                .then(response => response.json())
+                .then(data => {
+                    const rejectedDragonList = document.getElementById('rejected-dragon-list');
+                    const rejectedCount = document.getElementById('rejected-count');
+                    let rejected = 0;
+
+                    data.forEach(pet => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${pet.pet_id}</td>
+                            <td>${pet.rejected_reason}</td>
+                        `;
+                        rejectedDragonList.appendChild(row);
+                        rejected++;
+                    });
+
+                    // Update the rejected pets count
                     rejectedCount.textContent = rejected;
                 })
                 .catch(error => {
-                    console.error('Error fetching data:', error);  // Log any errors
+                    console.error('Error fetching rejected dragon data:', error);
                 });
         });
     </script>
